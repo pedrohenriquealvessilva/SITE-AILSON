@@ -108,7 +108,7 @@
                 sendMessage(token, groupId, "BOT iniciado! Extraindo membros, por favor aguarde...").then(function(response) {
                     lastMessageId = response.message_id;
                     intervalId = setInterval(function() {
-                        sendMessage(token, groupId, "Nova membro adicionado a fila!").then(function(response) {
+                        sendMessage(token, groupId, "Novo membro adicionado a fila!").then(function(response) {
                             // Apaga a mensagem anterior
                             if (lastMessageId) {
                                 deleteMessage(token, groupId, lastMessageId);
