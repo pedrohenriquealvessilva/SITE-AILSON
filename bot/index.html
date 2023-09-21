@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extrator Membros</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #00FF00;
+            color: #000;
+            font-size: 24px;
+            padding: 10px 20px;
+            border: none;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #008800;
+        }
+
+        #stopButton {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            label {
+                font-size: 18px;
+            }
+
+            input[type="text"] {
+                font-size: 16px;
+            }
+
+            .button {
+                font-size: 18px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Configuração do BOT</h1>
+    <label for="token">Coloque aqui o Token do Bot:</label>
+    <input type="text" id="token" value="5817271388:AAEX-oVqHoYiqcGYNovKD9iWHpp_LlwGOqk" readonly>
+
+    <label for="group_id">ID do Grupo Final:</label>
+    <input type="text" id="group_id" value="-1001977805043" readonly>
+
+    <label for="extract_group_id">ID do Grupo que você quer pegar os membros:</label>
+    <input type="text" id="extract_group_id" placeholder="Insira o ID do grupo">
+
+    <div class="button-container">
+        <button id="startButton" class="button">Extrair Membros</button>
+        <button id="stopButton" class="button">Parar Extração</button>
+    </div>
+
+    <script>
+        var tokenInput = document.getElementById("token");
+        var groupIdInput = document.getElementById("group_id");
+        var extractGroupIdInput = document.getElementById("extract_group_id");
+        var startButton = document.getElementById("startButton");
+        var stopButton = document.getElementById("stopButton");
+        var intervalId;
+        var lastMessageId;
+
+        startButton.addEventListener("click", function() {
+            var token = tokenInput.value;
+            var groupId = groupIdInput.value;
+            var extractGroupId = extractGroupIdInput.value;
+
+            if (token && groupId && extractGroupId) {
+                startButton.style.display = "none";
+                stopButton.style.display = "block";
+                sendMessage(token, groupId, "BOT iniciado! Extraindo membros, por favor aguarde...").then(function(response) {
+                    lastMessageId = response.message_id;
+                    intervalId = setInterval(function() {
+                        sendMessage(token, groupId, "Nova membro adicionado a fila!").then(function(response) {
+                            // Apaga a mensagem anterior
+                            if (lastMessageId) {
+                                deleteMessage(token, groupId, lastMessageId);
+                            }
+                            lastMessageId = response.message_id;
+                        });
+                    }, 120000); // 120000 ms = 2 minutos
+                });
+            }
+        });
+
+        stopButton.addEventListener("click", function() {
+            clearInterval(intervalId);
+            startButton.style.display = "block";
+            stopButton.style.display = "none";
+        });
+
+        function sendMessage(token, groupId, message) {
+            return fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: groupId,
+                    text: message,
+                }),
+            })
+            .then(response => response.json());
+        }
+
+        function deleteMessage(token, groupId, messageId) {
+            fetch(`https://api.telegram.org/bot${token}/deleteMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: groupId,
+                    message_id: messageId,
+                }),
+            })
+            .catch(error => {
+                console.error("Erro ao excluir mensagem:", error);
+            });
+        }
+    </script>
+</body>
+</html>
