@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatSPY</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .header {
+            background-image: url('https://i.ibb.co/dpMQV3b/1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .sub-header {
+            color: #ff0000;
+            font-size: 20px;
+        }
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .input-label {
+            font-size: 18px;
+        }
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .submit-button {
+            background-color: #00a20e;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .result {
+            display: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <h1><div class="sub-header">Informe o número do celular que deseja monitorar👇🏽</div></h1>
+    <form id="spy-form">
+        <div class="input-box">
+            <label class="input-label" for="cell-number">Insira os 11 números do celular corretamente:</label>
+            <input type="number" id="cell-number" name="cell-number" min="0" inputmode="numeric" required>
+        </div>
+        <button class="submit-button" id="submit-button">CLIQUE AQUI PARA VER AS CONVERSAS</button>
+    </form>
+    <div class="result" id="result"></div>
+    <script>
+        document.getElementById('spy-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const cellNumber = document.getElementById('cell-number').value;
+            const result = document.getElementById('result');
+            if (cellNumber.length >= 11) {
+                result.textContent = `7 CONVERSAS e 3 FOTOS encontradas no número ${cellNumber}, você será redirecionando em 3 segundos`;
+                result.style.display = 'block';
+                let count = 3;
+                const countdown = setInterval(() => {
+                    count--;
+                    if (count === 0) {
+                        clearInterval(countdown);
+                        window.location.href = 'https://foirevelado.online/';
+                    } else {
+                        result.textContent = `7 CONVERSAS e 3 FOTOS encontradas no número ${cellNumber}, você será redirecionando em ${count} segundos`;
+                    }
+                }, 1000);
+            } else {
+                result.textContent = "CONFIRA O NÚMERO E TENTE NOVAMENTE.";
+                result.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
