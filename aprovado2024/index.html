@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quase lá!</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1, p {
+            margin-bottom: 20px;
+        }
+
+        .kirvano-payment-trigger {
+            background-color: green;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .kirvano-payment-trigger:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Parabéns pela compra!</h1>
+
+    <h3>Seu acesso será enviado no e-mail e no WhatsApp cadastrado.<br>Para acessar agora clique no botão abaixo.</h3>
+
+    <!-- Adicione a classe "kirvano-payment-trigger" no botão que inicia a ação de compra -->
+    <button class="kirvano-payment-trigger">ACESSAR AGORA!</button>
+
+    <!-- Adicione os scripts do upsell -->
+    <script>
+        var offer = "aa6dbb20-16a8-4b7a-9919-a3a3a080ed78";
+        var nextPageURL = null;
+        var refusePageURL = "https://foirevelado.online/down";
+    </script>
+    <script src="https://snippets.kirvano.com/upsell.min.js"></script>
+
+</body>
+
+</html>
