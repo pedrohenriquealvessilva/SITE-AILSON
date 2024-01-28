@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Online Futurístico</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background: url('https://i.ibb.co/Z2wb8mq/background-1.png') center/cover no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        #banner {
+            max-width: 100%;
+            max-height: 50vh;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        #banner img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        main {
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .balance-icon {
+            width: 30px;
+            height: 30px;
+            background: url('https://i.ibb.co/GQQzTDX/gold-coins-symbol-png.webp') center/cover no-repeat;
+            margin-right: 10px;
+        }
+
+        .balance {
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        button {
+            background: #4CAF50;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            animation: pulse 1s infinite;
+            transition: background 0.3s ease-in-out;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .popup {
+    color: #000; /* Adicione esta linha com a cor desejada para o texto */
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 1;
+}
+
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
+        }
+
+        nav {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 200px;
+            z-index: 2;
+            overflow-x: hidden;
+            transition: width 0.5s;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #555;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            padding: 15px;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 3;
+        }
+
+        .menu-icon div {
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .menu-icon:hover div:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-icon:hover div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon:hover div:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        #mainContent {
+            margin-left: 200px;
+            transition: margin-left 0.5s;
+        }
+
+        @media screen and (max-width: 600px) {
+            nav {
+                width: 0;
+            }
+
+            #mainContent {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="showPopup()">
+
+    <header>
+        <div id="banner">
+            <img src="https://i.ibb.co/Z2wb8mq/background-1.png" alt="Background">
+        </div>
+        <div class="balance-container">
+            <div class="balance-icon"></div><br><br><br><br>
+<br>
+            <div class="balance">Saldo: R$ 100,00</div>
+        </div>
+        <div class="menu-icon" onclick="toggleNav()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showWithdrawalPopup()">Inicio</a>
+        <a href="#" onclick="showWithdrawalPopup()">Saque</a>
+        <a href="#" onclick="showPopup()">Deposito</a>
+        <a href="#" onclick="showWithdrawalPopup()">Slots</a>
+        <a href="#" onclick="showWithdrawalPopup()">Jogos Ao Vivo</a>
+        <a href="#" onclick="showWithdrawalPopup()">Apostas Esportivas</a>
+    </nav>
+
+    <div id="withdrawPopup" class="popup" style="display: none;">
+        <div class="form-container">
+            <button onclick="showPopup()">Depositar</button>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="form-container">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" pattern="[A-Za-z\s]+" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" pattern="[0-9]+" required>
+
+            <label for="pix">Chave PIX (CPF):</label>
+            <input type="text" id="pix" pattern="[0-9]+" required>
+
+            <button onclick="submitWithdrawal()">Solicitar Retirada</button>
+        </div>
+    </div>
+
+    <div id="popup-overlay" class="popup-overlay"></div>
+
+    <main id="mainContent">
+        <button onclick="showWithdrawalPopup()">Sacar</button>
+    </main>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popup-overlay').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.getElementById('withdrawPopup').style.display = 'none';
+        }
+
+        function submitWithdrawal() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var pix = document.getElementById('pix').value;
+
+            if (name && email && phone && pix) {
+                hidePopup();
+            } else {
+                alert('Por favor, preencha todos os campos corretamente.');
+            }
+        }
+
+        function showWithdrawalPopup() {
+            var saldo = 500;
+            if (saldo >= 550) {
+                document.getElementById('withdrawPopup').style.display = 'block';
+                document.getElementById('popup-overlay').style.display = 'block';
+            } else {
+                alert('Saldo insuficiente. É necessário depositar R$ 50 para sacar R$ 550.');
+                window.location.href = 'https://kirvano.com';
+            }
+        }
+
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            var mainContent = document.getElementById('mainContent');
+
+            if (nav.style.width === '200px') {
+                nav.style.width = '0';
+                mainContent.style.marginLeft = '0';
+            } else {
+                nav.style.width = '200px';
+                mainContent.style.marginLeft = '200px';
+            }
+        }
+
+        var banners = [
+            'https://i.ibb.co/Z172fRr/tiger.webp',
+            'https://i.ibb.co/N92gHyP/aviator.webp',
+            'https://i.ibb.co/M50RNPW/ninja.webp',
+            'https://i.ibb.co/WHsc958/deposito.webp'
+        ];
+        var currentBannerIndex = 0;
+
+        function rotateBanner() {
+            document.getElementById('banner').innerHTML = '<img src="' + banners[currentBannerIndex] + '" alt="Banner">';
+            currentBannerIndex = (currentBannerIndex + 1) % banners.length;
+            setTimeout(rotateBanner, 2000);
+        }
+
+        rotateBanner();
+    </script>
+</body>
+</html>
