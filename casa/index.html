@@ -1,338 +1,326 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso Online Futurístico</title>
+    <title>Subway Surfers Site</title>
     <style>
+        /* Estilos gerais */
         body {
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Press Start 2P', cursive;
             margin: 0;
             padding: 0;
+            background-color: #2c3e50;
             color: #fff;
-            background: url('https://i.ibb.co/Z2wb8mq/background-1.png') center/cover no-repeat;
-            background-attachment: fixed;
-            overflow-x: hidden;
-            width: 100vw;
-            height: 100vh;
         }
 
         header {
-            background: rgba(0, 0, 0, 0.8);
-            text-align: center;
+            display: none;
+        }
+
+        nav {
+            background-color: #c0392b;
             padding: 10px;
-            font-size: 18px;
-        }
-
-        #banner {
-            max-width: 100%;
-            max-height: 50vh;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        #banner img {
+            text-align: center;
+            position: fixed;
             width: 100%;
-            height: auto;
-            object-fit: cover;
-            display: block;
+            top: 0;
+            z-index: 1000;
+            display: none; /* Inicialmente oculto em dispositivos móveis */
         }
 
-        main {
+        nav a {
+            color: #fff;
+            text-decoration: none;
             padding: 10px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #d35400;
+            display: none; /* Inicialmente oculto em dispositivos móveis */
+        }
+
+        .menu-icon {
+            display: block;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 80px 20px 20px 20px;
+        }
+
+        /* Quadrante principal */
+        .first-quadrant {
+            background-image: url('https://i.ibb.co/3MTzgcn/Subway-Surfers-Classic2012-Environment.webp');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #subwaypix-text {
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        #subwaypix-text:hover {
+            color: #ffd700;
+        }
+
+        #jogar-agora-button {
+            background-color: #fff;
+            color: #d35400;
+            padding: 30px 60px; /* Ajuste o tamanho do botão aqui */
+            font-size: 1.5em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1;
+        }
+
+        #jogar-agora-button:hover {
+            background-color: #e67e22;
+            color: #fff;
+        }
+
+        /* Estilos específicos para dispositivos móveis */
+        @media only screen and (max-width: 600px) {
+            nav {
+                top: 0;
+            }
+
+            .menu-icon {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            #subwaypix-text {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+            }
+
+            #jogar-agora-button {
+                padding: 20px 40px; /* Ajuste o tamanho do botão para dispositivos móveis */
+                font-size: 1em;
+            }
+        }
+
+        /* Estilos para o segundo quadrante */
+        #pagina-jogar {
+            background-color: #ffd700;
+            position: relative;
+            overflow: hidden;
+            height: 120vh;
+            text-align: center;
+        }
+
+        /* Brilhos do jogo */
+        #brilhos {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .brilho {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .brilho:nth-child(1) {
+            top: 20%;
+            left: 10%;
+        }
+
+        .brilho:nth-child(2) {
+            top: 70%;
+            left: 60%;
+        }
+
+        /* Caixa de perguntas estilo Instagram */
+        #instagram-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            margin: 0 auto;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 100%;
-        }
-
-        .balance-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .balance-icon {
-            width: 30px;
-            height: 30px;
-            background: url('https://i.ibb.co/GQQzTDX/gold-coins-symbol-png.webp') center/cover no-repeat;
-            margin-right: 10px;
-        }
-
-        .balance {
-            font-size: 24px;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        button {
-            background: #4CAF50;
-            color: #fff;
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            border-radius: 50px;
-            animation: pulse 1s infinite;
-            transition: background 0.3s ease-in-out;
-            margin: 10px;
-        }
-
-        button:hover {
-            background: #45a049;
-        }
-
-        .popup {
-    color: #000; /* Adicione esta linha com a cor desejada para o texto */
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #ccc;
-    z-index: 1;
-}
-
-
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
-        }
-
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input {
-            margin: 10px;
-            padding: 10px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
-            }
-            50% {
-                transform: scale(1.1);
-                box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
-            }
-        }
-
-        nav {
-            display: none;
-            flex-wrap: wrap;
-            justify-content: center;
-            background-color: #333;
-            padding: 10px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 200px;
-            z-index: 2;
-            overflow-x: hidden;
-            transition: width 0.5s;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            margin: 5px;
-            border-radius: 5px;
-            background-color: #555;
-            display: block;
-            transition: background-color 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: #777;
-        }
-
-        .menu-icon {
-            cursor: pointer;
+            text-align: center;
             padding: 15px;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 3;
+            border: 5px solid #000; /* Adicionando uma borda preta */
         }
 
-        .menu-icon div {
-            width: 30px;
-            height: 5px;
-            background-color: #fff;
-            margin: 6px 0;
-            transition: 0.4s;
+        #perfil img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
 
-        .menu-icon:hover div:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
+        #pergunta p {
+            color: #000;
+            font-size: 1.2em;
         }
 
-        .menu-icon:hover div:nth-child(2) {
-            opacity: 0;
+        #texto-abaixo {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            font-size: 0.6em;
         }
 
-        .menu-icon:hover div:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
+        #jogar-agora-segundo {
+            background-color: #e67e22;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.8em;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        #mainContent {
-            margin-left: 200px;
-            transition: margin-left 0.5s;
+        #jogar-agora-segundo:hover {
+            background-color: #d35400;
+        }
+        
+        /* Adicione essas regras de estilo para as seções das imagens */
+        #pagina-imagem-1,
+        #pagina-imagem-2,
+        #pagina-imagem-3,
+        #pagina-imagem-4 {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
         }
 
-        @media screen and (max-width: 600px) {
-            nav {
-                width: 0;
-            }
+        #pagina-imagem-1 img,
+        #pagina-imagem-2 img,
+        #pagina-imagem-3 img,
+        #pagina-imagem-4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
 
-            #mainContent {
-                margin-left: 0;
-            }
+        /* Adicione isso para remover qualquer background-color existente na sua página */
+        html, body {
+            background-color: #CAE8F9;
+            overflow: auto; /* Permita barras de rolagem novamente */
+        }
+
+        /* Remova a margem padrão do body para garantir que não haja espaço em branco */
+        body {
+            margin: 0;
         }
     </style>
-</head>
-<body onload="showPopup()">
 
-    <header>
-        <div id="banner">
-            <img src="https://i.ibb.co/Z2wb8mq/background-1.png" alt="Background">
-        </div>
-        <div class="balance-container">
-            <div class="balance-icon"></div><br><br><br><br>
-<br>
-            <div class="balance">Saldo: R$ 100,00</div>
-        </div>
-        <div class="menu-icon" onclick="toggleNav()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </header>
+    <!-- Adicionando a fonte Press Start 2P -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+</head>
+<body>
+
+    <!-- Cabeçalho removido -->
 
     <nav>
-        <a href="#" onclick="showWithdrawalPopup()">Inicio</a>
-        <a href="#" onclick="showWithdrawalPopup()">Saque</a>
-        <a href="#" onclick="showPopup()">Deposito</a>
-        <a href="#" onclick="showWithdrawalPopup()">Slots</a>
-        <a href="#" onclick="showWithdrawalPopup()">Jogos Ao Vivo</a>
-        <a href="#" onclick="showWithdrawalPopup()">Apostas Esportivas</a>
+        <div class="menu-icon">&#9776;</div>
+        <a href="#pagina-inicial">Página Inicial</a>
+        <a href="#pagina-jogar">Jogar</a>
+        <a href="#pagina-login">Login</a>
+        <a href="#pagina-cadastro">Cadastro</a>
     </nav>
 
-    <div id="withdrawPopup" class="popup" style="display: none;">
-        <div class="form-container">
-            <button onclick="showPopup()">Depositar</button>
+    <section id="pagina-inicial" class="first-quadrant">
+        <h1><div id="subwaypix-text">SUBWAYPIX</div></h1>
+        <a id="jogar-agora-button" href="#pagina-jogar">JOGAR<br>AGORA!</a>
+    </section>
+
+    <section id="pagina-jogar">
+        <!-- Fundo amarelo estilo as moedas do Subway Surfers -->
+
+        <!-- Brilhos do jogo -->
+        <div id="brilhos">
+            <div class="brilho"></div>
+            <div class="brilho"></div>
         </div>
-    </div>
 
-    <div id="popup" class="popup">
-        <div class="form-container">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" pattern="[A-Za-z\s]+" required>
+        <!-- Caixa de perguntas estilo Instagram -->
+        <div id="instagram-box">
+            <div id="perfil">
+                <img src="https://i.ibb.co/kqGfXj9/surf-character-158d567355ca3c582a2e.gif" alt="Personagem de Subway Surfers">
+                <p>Nome do Perfil</p>
+            </div>
+            <div id="pergunta">
+                <p>SUBWAY<br><br>
+                    Bem-vindo ao mundo das moedas lucrativas do surfista, o joguinho que vai deixar você nas com o bolso cheio! Prepare-se para uma experiência emocionante, onde suas habilidades de salto serão testadas e sua conta bancária pode crescer a cada partida. colete as moedas. 💲✅
+                </p>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
+            <!-- Botão Jogar Agora -->
+            <a id="jogar-agora-segundo" href="#pagina-jogar">JOGAR AGORA!</a>
 
-            <label for="phone">Telefone:</label>
-            <input type="tel" id="phone" pattern="[0-9]+" required>
-
-            <label for="pix">Chave PIX (CPF):</label>
-            <input type="text" id="pix" pattern="[0-9]+" required>
-
-            <button onclick="submitWithdrawal()">Solicitar Retirada</button>
+            <!-- Texto abaixo do botão -->
+            <div id="texto-abaixo">
+                <p>Rodadas de boas-vindas disponíveis!</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="popup-overlay" class="popup-overlay"></div>
+    <!-- Adicione essas seções após a última sessão existente no seu HTML -->
+    <section id="pagina-imagem-1">
+        <img src="https://i.ibb.co/Swwmh27/1.png" alt="Imagem de fundo 1">
+    </section>
 
-    <main id="mainContent">
-        <button onclick="showWithdrawalPopup()">Sacar</button>
-    </main>
+    <section id="pagina-imagem-2">
+        <img src="https://i.ibb.co/HPB103G/2.png" alt="Imagem de fundo 2">
+    </section>
+
+    <section id="pagina-imagem-3">
+        <img src="https://i.ibb.co/DpbfLN1/3.png" alt="Imagem de fundo 3">
+    </section>
+
+    <section id="pagina-imagem-4">
+        <img src="https://i.ibb.co/3hq3S5v/4.png" alt="Imagem de fundo 4">
+    </section>
 
     <script>
-        function showPopup() {
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('popup-overlay').style.display = 'block';
-        }
-
-        function hidePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('popup-overlay').style.display = 'none';
-            document.getElementById('withdrawPopup').style.display = 'none';
-        }
-
-        function submitWithdrawal() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var phone = document.getElementById('phone').value;
-            var pix = document.getElementById('pix').value;
-
-            if (name && email && phone && pix) {
-                hidePopup();
-            } else {
-                alert('Por favor, preencha todos os campos corretamente.');
-            }
-        }
-
-        function showWithdrawalPopup() {
-            var saldo = 500;
-            if (saldo >= 550) {
-                document.getElementById('withdrawPopup').style.display = 'block';
-                document.getElementById('popup-overlay').style.display = 'block';
-            } else {
-                alert('Saldo insuficiente. É necessário depositar R$ 50 para sacar R$ 550.');
-                window.location.href = 'https://kirvano.com';
-            }
-        }
-
-        function toggleNav() {
-            var nav = document.querySelector('nav');
-            var mainContent = document.getElementById('mainContent');
-
-            if (nav.style.width === '200px') {
-                nav.style.width = '0';
-                mainContent.style.marginLeft = '0';
-            } else {
-                nav.style.width = '200px';
-                mainContent.style.marginLeft = '200px';
-            }
-        }
-
-        var banners = [
-            'https://i.ibb.co/Z172fRr/tiger.webp',
-            'https://i.ibb.co/N92gHyP/aviator.webp',
-            'https://i.ibb.co/M50RNPW/ninja.webp',
-            'https://i.ibb.co/WHsc958/deposito.webp'
-        ];
-        var currentBannerIndex = 0;
-
-        function rotateBanner() {
-            document.getElementById('banner').innerHTML = '<img src="' + banners[currentBannerIndex] + '" alt="Banner">';
-            currentBannerIndex = (currentBannerIndex + 1) % banners.length;
-            setTimeout(rotateBanner, 2000);
-        }
-
-        rotateBanner();
+        // Adicionando funcionalidade ao ícone do menu para mostrar/ocultar a navegação
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            document.querySelector('nav').style.display = (getComputedStyle(document.querySelector('nav')).display === 'none') ? 'block' : 'none';
+        });
     </script>
+
 </body>
 </html>
