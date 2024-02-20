@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - LotoSoft</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Login</title>
     <style>
         body {
             margin: 0;
@@ -79,21 +79,6 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var viewportMetaTag = document.querySelector('meta[name="viewport"]');
-            if (viewportMetaTag) {
-                var originalViewportContent = viewportMetaTag.getAttribute('content');
-                document.querySelectorAll('input').forEach(function(input) {
-                    input.addEventListener('focus', function() {
-                        viewportMetaTag.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-                    });
-                    input.addEventListener('blur', function() {
-                        viewportMetaTag.setAttribute('content', originalViewportContent);
-                    });
-                });
-            }
-        });
-
         function validateForm() {
             var email = document.getElementById("login-form").elements["email"].value;
             var password = document.getElementById("login-form").elements["password"].value;
