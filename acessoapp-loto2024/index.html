@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACESSO AO APLICATIVO</title>
+<title>APLICATIVO LOTOSOFT</title>
 <style>
     body {
         background-color: black;
@@ -11,6 +11,10 @@
         font-family: Arial, sans-serif;
         text-align: center;
         padding-top: 50px;
+    }
+    #logo {
+        width: 200px;
+        margin: 0 auto;
     }
     #resultados {
         display: flex;
@@ -86,6 +90,9 @@
         display: block;
         margin: 0 auto;
     }
+    .hidden {
+        display: none;
+    }
 </style>
 <script>
 // Função para gerar números aleatórios da Lotofácil
@@ -144,13 +151,18 @@ function gerarJogos() {
     // Atualiza a headline para mostrar a data atual
     var headline = document.getElementById("headline");
     var data = agora.getDate() + '/' + (agora.getMonth() + 1) + '/' + agora.getFullYear();
-    headline.innerText = "Confira os jogos de hoje, dia:" + data;
+    headline.innerText = "Confira os jogos de hoje, dia: " + data;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Esconder o texto "Clique no botão abaixo e veja os jogos de HOJE:"
+    var textoJogosHoje = document.getElementById("textoJogosHoje");
+    textoJogosHoje.classList.add("hidden");
 }
 </script>
 </head>
 <body>
-<div class="headline" id="headline">Clique no botão abaixo para ver os jogos de hoje:</div>
+<img id="logo" src="https://i.ibb.co/FK7vTLC/a-4.png" alt="Logo"><br><br>
+<h3><div class="headline" id="headline">O aplicativo gera os MELHORES JOGOS pra você!<br><br></h3></div><div class="headline" id="textoJogosHoje">Clique no botão abaixo e veja os jogos de HOJE:</div><br>
 <button onclick="gerarJogos()">VER JOGOS</button>
 <div id="resultados"></div>
 <script>
