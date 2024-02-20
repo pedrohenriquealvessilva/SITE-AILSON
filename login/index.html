@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - LotoSoft</title>
+    <title>Login</title>
     <style>
         body {
             margin: 0;
@@ -108,5 +105,19 @@
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
     </script>
+
+    <script>
+window.onload = function() {
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        var now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+};
+</script>
+
 </body>
 </html>
