@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aaa</title>
+    <title>Carregamento de Página</title>
     <style>
         body, html {
             margin: 0;
@@ -22,23 +22,30 @@
 <body>
     <iframe id="conteudo"></iframe>
     <script>
-        // Carregar conteúdo específico com base na largura da janela
-        function carregarConteudo() {
+        // Função para carregar conteúdo dinamicamente no iframe
+        function carregarConteudo(url) {
+            fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("conteudo").srcdoc = data;
+            })
+            .catch(error => console.error('Erro ao carregar conteúdo:', error));
+        }
+
+        // Carregar o conteúdo imediatamente ao carregar a página
+        window.onload = function() {
             // Verificar a largura da janela
             var larguraJanela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
             // Verificar se a largura é menor que 600px (considerado um dispositivo móvel)
             if (larguraJanela < 600) {
                 // Carregar página de oferta para dispositivos móveis
-                document.getElementById("conteudo").src = "https://foirevelado.online/oferta";
+                carregarConteudo("https://foirevelado.online/oferta");
             } else {
                 // Carregar página de computador para telas maiores
-                document.getElementById("conteudo").src = "https://foirevelado.online/01";
+                carregarConteudo("https://foirevelado.online/01");
             }
-        }
-
-        // Carregar o conteúdo imediatamente ao carregar a página
-        window.onload = carregarConteudo;
+        };
     </script>
 </body>
 </html>
