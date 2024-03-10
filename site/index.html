@@ -3,39 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ca</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <iframe id="conteudo"></iframe>
+    <title>Pedro</title>
     <script>
-        // Carregar conteúdo específico com base no tipo de dispositivo
-        function carregarConteudo() {
+        // Função para redirecionar imediatamente após carregar a página
+        window.onload = function() {
             // Verificar o tipo de dispositivo
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
-                // Dispositivo móvel: carregar https://foirevelado.online/oferta
-                document.getElementById("conteudo").src = "https://foirevelado.online/oferta";
+                // Dispositivo móvel: redirecionar para https://foirevelado.online/oferta
+                window.location.href = "https://foirevelado.online/oferta";
             } else {
-                // Computador: manter a URL atual
+                // Computador: redirecionar para https://foirevelado.online/01
+                window.location.href = "https://foirevelado.online/01";
             }
-        }
-
-        // Carregar o conteúdo imediatamente ao carregar a página
-        window.onload = carregarConteudo;
+        };
     </script>
+</head>
+<body>
+    <p>Redirecionando...</p>
 </body>
 </html>
