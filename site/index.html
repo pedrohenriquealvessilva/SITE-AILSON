@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecionamento</title>
     <script>
-        // Função para redirecionar imediatamente após clicar
-        function redirecionar(url) {
-            window.location.href = url;
+        // Função para redirecionar imediatamente
+        function redirecionar() {
+            // Verificar o tipo de dispositivo
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
+                // Dispositivo móvel: redirecionar para https://foirevelado.online/oferta
+                window.location.href = "https://foirevelado.online/oferta";
+            } else {
+                // Computador: redirecionar para https://foirevelado.online/01
+                window.location.href = "https://foirevelado.online/01";
+            }
         }
+        // Chamar a função de redirecionamento quando a página é carregada
+        window.onload = redirecionar;
     </script>
 </head>
 <body>
-    <a id="link" href="javascript:void(0);" onclick="redirecionar('https://foirevelado.online/site')">Ir para o site</a>
-
-    <script>
-        // Verificar o tipo de dispositivo e definir o link correspondente
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
-            document.getElementById("link").setAttribute("href", "javascript:void(0);");
-            document.getElementById("link").setAttribute("onclick", "redirecionar('https://foirevelado.online/oferta')");
-        } else {
-            document.getElementById("link").setAttribute("href", "javascript:void(0);");
-            document.getElementById("link").setAttribute("onclick", "redirecionar('https://foirevelado.online/01')");
-        }
-    </script>
+    <p>Redirecionando...</p>
 </body>
 </html>
