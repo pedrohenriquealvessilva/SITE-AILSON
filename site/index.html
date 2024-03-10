@@ -3,25 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>o</title>
+    <title>Carregamento de Página</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="conteudo"></iframe>
     <script>
-        // Função para redirecionar automaticamente
-        function redirecionar() {
+        // Carregar conteúdo específico com base no tipo de dispositivo
+        function carregarConteudo() {
             // Verificar o tipo de dispositivo
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
-                // Dispositivo móvel: redirecionar para https://foirevelado.online/oferta
-                window.location.href = "https://foirevelado.online/oferta";
+                // Dispositivo móvel: carregar https://foirevelado.online/oferta
+                document.getElementById("conteudo").src = "https://foirevelado.online/oferta";
             } else {
-                // Computador: redirecionar para https://foirevelado.online/01
-                window.location.href = "https://foirevelado.online/01";
+                // Computador: carregar https://foirevelado.online/01
+                document.getElementById("conteudo").src = "https://foirevelado.online/01";
             }
         }
-        // Chamar a função de redirecionamento quando a página é carregada
-        window.onload = redirecionar;
+
+        // Carregar o conteúdo imediatamente ao carregar a página
+        window.onload = carregarConteudo;
     </script>
-</head>
-<body>
-    <p>Carregando...</p>
 </body>
 </html>
