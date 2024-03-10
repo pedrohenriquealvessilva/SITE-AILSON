@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conteúdo Dinâmico</title>
+    <script>
+        // Função para carregar conteúdo com base no tipo de dispositivo
+        function carregarConteudo() {
+            // Verificar se é um dispositivo móvel
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Carregar conteúdo para dispositivos móveis
+                document.getElementById("conteudo").src = "https://foirevelado.online/oferta";
+            } else {
+                // Carregar conteúdo para computadores
+                document.getElementById("conteudo").src = "https://foirevelado.online/01";
+            }
+        }
+
+        // Carregar o conteúdo imediatamente ao carregar a página
+        window.onload = carregarConteudo;
+    </script>
+</head>
+<body>
+    <iframe id="conteudo" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+</body>
+</html>
