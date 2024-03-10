@@ -3,31 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carregamento de Página</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
+    <title>Redirecionamento</title>
+    <script>
+        // Função para redirecionar imediatamente após clicar
+        function redirecionar(url) {
+            window.location.href = url;
         }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <iframe id="conteudo" src="about:blank"></iframe>
+    <a id="link" href="javascript:void(0);" onclick="redirecionar('https://foirevelado.online/site')">Ir para o site</a>
+
     <script>
-        // Verificar o tipo de dispositivo e carregar a página correspondente
+        // Verificar o tipo de dispositivo e definir o link correspondente
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
-            document.getElementById("conteudo").src = "https://foirevelado.online/oferta";
+            document.getElementById("link").setAttribute("href", "javascript:void(0);");
+            document.getElementById("link").setAttribute("onclick", "redirecionar('https://foirevelado.online/oferta')");
         } else {
-            document.getElementById("conteudo").src = "https://foirevelado.online/01";
+            document.getElementById("link").setAttribute("href", "javascript:void(0);");
+            document.getElementById("link").setAttribute("onclick", "redirecionar('https://foirevelado.online/01')");
         }
     </script>
 </body>
