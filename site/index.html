@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página</title>
+    <title>Carregamento de Página</title>
     <style>
         body, html {
             margin: 0;
@@ -20,32 +20,15 @@
     </style>
 </head>
 <body>
-    <iframe id="conteudo"></iframe>
+    <iframe id="conteudo" src="about:blank"></iframe>
     <script>
-        // Função para carregar conteúdo dinamicamente no iframe
-        function carregarConteudo(url) {
-            fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("conteudo").srcdoc = data;
-            })
-            .catch(error => console.error('Erro ao carregar conteúdo:', error));
+        // Verificar o tipo de dispositivo e carregar a página correspondente
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
+            document.getElementById("conteudo").src = "https://foirevelado.online/oferta";
+        } else {
+            document.getElementById("conteudo").src = "https://foirevelado.online/01";
         }
-
-        // Carregar o conteúdo imediatamente ao carregar a página
-        window.onload = function() {
-            // Verificar a largura da janela
-            var larguraJanela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-            // Verificar se a largura é menor que 600px (considerado um dispositivo móvel)
-            if (larguraJanela < 600) {
-                // Carregar página de oferta para dispositivos móveis
-                carregarConteudo("https://foirevelado.online/processando-etapa-2");
-            } else {
-                // Carregar página de computador para telas maiores
-                carregarConteudo("https://foirevelado.online/01");
-            }
-        };
     </script>
 </body>
 </html>
