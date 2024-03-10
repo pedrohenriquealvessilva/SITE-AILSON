@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conteúdo Dinâmico</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
     <script>
         // Função para carregar conteúdo com base no tipo de dispositivo
         function carregarConteudo() {
@@ -22,6 +35,6 @@
     </script>
 </head>
 <body>
-    <iframe id="conteudo" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+    <iframe id="conteudo" width="100%" height="100%"></iframe>
 </body>
 </html>
