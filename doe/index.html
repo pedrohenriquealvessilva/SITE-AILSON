@@ -153,8 +153,8 @@ body::-webkit-scrollbar-thumb{
 
       var href =
         links[i].href.trim() +
-        (links[i].href.indexOf("?") > 0 ? "&" : "?") +
-        document.location.search.replace("?", "").toString();
+        (links[i].href.indexOf("") > 0  "&" : "") +
+        document.location.search.replace("", "").toString();
       links[i].href = href;
     }
   }
