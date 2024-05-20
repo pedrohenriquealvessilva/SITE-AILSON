@@ -47,18 +47,22 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            max-width: 80%;
+            width: 90%;
+            max-width: 600px;
+            box-sizing: border-box;
         }
         .popup-button {
-            display: block;
+            display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
+            white-space: nowrap;
+        }
+        .popup-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -94,10 +98,87 @@
     <!-- Popup -->
     <div id="popupContainer">
         <div class="popup-content">
-            <!-- Vídeo -->
-            <div id="vid_6649348d87ac0e000b3ddd34" style="position:relative;width:100%;padding: 56.25% 0 0;"> <img id="thumb_6649348d87ac0e000b3ddd34" src="https://images.converteai.net/a6bbce15-8885-4d49-8a7b-b9e642829514/players/6649348d87ac0e000b3ddd34/thumbnail.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;"> <div id="backdrop_6649348d87ac0e000b3ddd34" style="position:absolute;top:0;width:100%;height:100%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);"></div> </div> <script type="text/javascript" id="scr_6649348d87ac0e000b3ddd34"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/a6bbce15-8885-4d49-8a7b-b9e642829514/players/6649348d87ac0e000b3ddd34/player.js", s.async=!0,document.head.appendChild(s); </script> <style> .elementor-element:has(#smartplayer) { width: 100%; } </style>
-            <!-- Botão para o site -->
-            <a href="https://pay.kirvano.com/16a9a2d7-d94d-474d-8f8e-d188f7c958f2" class="popup-button" target="_blank">CONCLUIR SAQUE</a>
+            <!-- Container para o conteúdo -->
+            <div class="content-container">
+                <!-- Nova Headline -->
+                <h1>SALDO BLOQUEADO</h1>
+                <!-- Headline com o valor -->
+                <h2>R$ 365,93</h2><br>
+                <!-- Texto menor -->
+                <h2>Assista o vídeo abaixo para aprender a sacar.</h2>
+                <!-- Vídeo -->
+                <div id="vid_6649348d87ac0e000b3ddd34" class="video-container">
+                    <img id="thumb_6649348d87ac0e000b3ddd34" src="https://images.converteai.net/a6bbce15-8885-4d49-8a7b-b9e642829514/players/6649348d87ac0e000b3ddd34/thumbnail.jpg" alt="Thumbnail do vídeo" class="video-thumbnail">
+                    <div id="backdrop_6649348d87ac0e000b3ddd34" class="video-backdrop"></div>
+                </div>
+                <script type="text/javascript" id="scr_6649348d87ac0e000b3ddd34">
+                    var s = document.createElement("script");
+                    s.src = "https://scripts.converteai.net/a6bbce15-8885-4d49-8a7b-b9e642829514/players/6649348d87ac0e000b3ddd34/player.js";
+                    s.async = true;
+                    document.head.appendChild(s);
+                </script>
+
+                <!-- Botão para o site -->
+                <a href="https://pay.kirvano.com/16a9a2d7-d94d-474d-8f8e-d188f7c958f2" class="popup-button" target="_blank">CONCLUIR SAQUE</a>
+            </div>
+
+            <style>
+                .content-container {
+                    text-align: center;
+                    padding: 10px;
+                    box-sizing: border-box;
+                }
+                .content-container h1 {
+                    font-size: 11px;
+                    margin-bottom: 5px;
+                }
+                .content-container h2 {
+                    font-size: 19px;
+                    margin-bottom: 5px;
+                }
+                .content-container h3 {
+                    font-size: 8px; /* Ajustei para garantir que o texto caiba no popup */
+                    margin-bottom: 10px;
+                    white-space: nowrap;
+                }
+                .video-container {
+                    position: relative;
+                    width: 100%;
+                    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                }
+                .video-thumbnail {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+                .video-backdrop {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    -webkit-backdrop-filter: blur(5px);
+                    backdrop-filter: blur(5px);
+                }
+                .elementor-element:has(#smartplayer) {
+                    width: 100%;
+                }
+                .popup-button {
+                    display: inline-block;
+                    padding: 10px 30px;
+                    background-color: #007bff;
+                    color: #fff;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    white-space: nowrap;
+                }
+                .popup-button:hover {
+                    background-color: #0056b3;
+                }
+            </style>
         </div>
     </div>
 
@@ -112,8 +193,6 @@
             height: 50px;
         }
     </style>
-
-    
 
     <script>
         // Função para abrir o popup
