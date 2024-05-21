@@ -190,19 +190,20 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 </div>
 <div style="text-align: center;">
     <b><p>Clique no botão abaixo para falar com o suporte:</p></b>
-    <button style="background-color: #25D366; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width: 80%; max-width: 300px; font-weight: bold;">Falar com o Suporte</button>
+    <button id="suporte" style="background-color: #25D366; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width: 80%; max-width: 300px; font-weight: bold;" data-url="https://api.whatsapp.com/send?phone=5538999826787&text=Comprei%20e%20tenho%20uma%20d%C3%BAvida!">Falar com o Suporte</button>
     <b><p>Clique no botão abaixo para acessar o aplicativo:</p></b>
-    <button style="background-color: #1DA1F2; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width: 80%; max-width: 300px; font-weight: bold;">Acessar Aplicativo</button>
+    <button id="aplicativo" style="background-color: #1DA1F2; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width: 80%; max-width: 300px; font-weight: bold;" data-url="https://foirevelado.online/login/">Acessar Aplicativo</button>
 </div>
 
 <script>
     document.querySelectorAll('button').forEach(button => {
         button.onclick = function() {
-            const url = this.textContent === 'Suporte' ? 'https://api.whatsapp.com/send?phone=5538999826787&text=Comprei%20e%20tenho%20uma%20d%C3%BAvida!' : 'https://foirevelado.online/login/';
+            const url = this.getAttribute('data-url');
             window.location.href = url;
         };
     });
 </script>
+
 
 
 
