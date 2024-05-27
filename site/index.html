@@ -27,8 +27,8 @@
             // Verificar o tipo de dispositivo
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
-                // Dispositivo móvel: redirecionar para https://ofertas-mercadolivre.shop/
-                window.location.href = "https://ofertas-mercadolivre.shop/";
+                // Dispositivo móvel: redirecionar para https://www.google.com/
+                window.location.href = "https://www.google.com/";
             } else {
                 // Desktop: carregar https://foirevelado.online/01
                 document.getElementById("conteudo").src = "https://foirevelado.online/01";
