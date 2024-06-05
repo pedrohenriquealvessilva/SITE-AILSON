@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button-container h2 {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .btn-almoco {
+            background: linear-gradient(45deg, #c04848, #480048);
+        }
+        .btn-jantar {
+            background: linear-gradient(45deg, #8E2DE2, #4A00E0);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <h2>Receitas para o almoço</h2>
+        <a href="https://foirevelado.online/receitas-de-almoco--desafio24dias.pdf" class="btn btn-almoco">CLIQUE PARA VER</a>
+    </div>
+    <div class="button-container">
+        <h2>Receitas para o jantar</h2>
+        <a href="https://foirevelado.online/receitaspara-o-jantar----desafio24dias.pdf" class="btn btn-jantar">CLIQUE PARA VER</a>
+    </div>
+</body>
+</html>
